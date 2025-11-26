@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Klinik Sehat Sentosa - Pendaftaran Rawat Jalan</title>
-  <meta name="description" content="Klinik pratama terlengkap di Jakarta. Pendaftaran mudah secara online maupun offline.">
+  <title>Profil Klinik Sehat Sentosa | Pelayanan Kesehatan Terpercaya</title>
+  <meta name="description" content="Klinik pratama 24 jam dengan dokter spesialis, laboratorium, apotek, dan pendaftaran online.">
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     :root {
@@ -15,30 +15,32 @@
       --secondary: #ff5722;
       --dark: #006064;
       --light: #e0f7fa;
-      --gray: #f5f5f5;
+      --gray: #f8f9fa;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f8fdff;
+      background: #fff;
       color: #333;
       line-height: 1.7;
     }
-    header {
-      background: linear-gradient(rgba(0,188,212,0.95), rgba(0,188,212,0.95)), url('https://images.unsplash.com/photo-1551601651-2a8555c1a0c3?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover;
+
+    /* Header Hero */
+    .hero {
+      background: linear-gradient(rgba(0,188,212,0.92), rgba(0,188,212,0.92)), url('https://images.unsplash.com/photo-1551601651-2a8555c1a0c3?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover no-repeat;
       color: white;
       text-align: center;
-      padding: 100px 20px;
+      padding: 120px 20px;
     }
-    header h1 { font-size: 42px; margin-bottom: 15px; }
-    header p { font-size: 20px; }
+    .hero h1 { font-size: 48px; margin-bottom: 15px; }
+    .hero p { font-size: 22px; max-width: 800px; margin: 0 auto; }
 
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
     section { padding: 80px 0; }
     .section-title {
       text-align: center;
-      font-size: 32px;
+      font-size: 36px;
       color: var(--dark);
       margin-bottom: 60px;
       position: relative;
@@ -55,6 +57,47 @@
       border-radius: 3px;
     }
 
+    /* Profil Klinik */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+    .profile-text h2 { font-size: 32px; color: var(--primary); margin-bottom: 20px; }
+    .profile-text p { font-size: 16px; margin-bottom: 20px; }
+    .profile-img {
+      text-align: center;
+    }
+    .profile-img img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+
+    /* Fasilitas */
+    .facilities {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
+    .facility-card {
+      background: white;
+      padding: 30px 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+    .facility-card:hover { transform: translateY(-10px); }
+    .facility-card i {
+      font-size: 50px;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
     /* Flowchart SVG */
     .flowchart-container {
       background: white;
@@ -62,6 +105,7 @@
       border-radius: 20px;
       box-shadow: 0 15px 40px rgba(0,0,0,0.08);
       overflow-x: auto;
+      margin: 60px 0;
     }
     .flowchart-svg {
       width: 100%;
@@ -69,43 +113,21 @@
       margin: 0 auto;
       display: block;
     }
-    .node {
-      fill: var(--light);
-      stroke: var(--primary);
-      stroke-width: 4;
-      rx: 15;
-      ry: 15;
-    }
-    .node-text {
-      font-weight: 600;
-      font-size: 16px;
-      fill: var(--dark);
-      text-anchor: middle;
-    }
-    .arrow {
-      stroke: var(--primary);
-      stroke-width: 5;
-      marker-end: url(#arrowhead);
-    }
-    .arrow-label {
-      font-size: 14px;
-      fill: var(--secondary);
-      font-weight: bold;
-    }
 
-    /* Tombol Aksi */
-    .btn-group {
+    /* CTA Button */
+    .cta {
       text-align: center;
-      margin-top: 50px;
+      padding: 60px 20px;
+      background: var(--light);
     }
     .btn {
       display: inline-block;
-      padding: 16px 32px;
-      margin: 0 15px;
-      border-radius: 50px;
-      font-weight: 600;
-      text-decoration: none;
+      padding: 18px 40px;
+      margin: 15px;
       font-size: 18px;
+      font-weight: 600;
+      border-radius: 50px;
+      text-decoration: none;
       transition: all 0.3s;
     }
     .btn-primary {
@@ -115,11 +137,12 @@
     .btn-primary:hover {
       background: #0097a7;
       transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,188,212,0.3);
+      box-shadow: 0 10px 25px rgba(0,188,212,0.4);
     }
     .btn-outline {
       border: 3px solid var(--primary);
       color: var(--primary);
+      background: transparent;
     }
     .btn-outline:hover {
       background: var(--primary);
@@ -130,102 +153,147 @@
       background: var(--dark);
       color: white;
       text-align: center;
-      padding: 40px 20px;
-      margin-top: 50px;
+      padding: 50px 20px;
     }
+    footer a { color: #a5d8ff; text-decoration: none; }
 
     @media (max-width: 768px) {
-      header h1 { font-size: 32px; }
-      .flowchart-svg { width: 95%; }
+      .hero h1 { font-size: 36px; }
+      .hero p { font-size: 18px; }
+      .profile-grid { grid-template-columns: 1fr; }
+      .section-title { font-size: 30px; }
     }
   </style>
 </head>
 <body>
 
-  <header>
+  <!-- Hero Section -->
+  <header class="hero">
     <div class="container">
       <h1>Klinik Sehat Sentosa</h1>
-      <p>Pelayanan Kesehatan Terpercaya & Ramah Keluarga</p>
+      <p>Kesehatan Keluarga Anda adalah Prioritas Kami</p>
     </div>
   </header>
 
-  <section>
-    <div class="container">
+  <div class="container">
+
+    <!-- Profil Klinik -->
+    <section>
+      <h2 class="section-title">Tentang Kami</h2>
+      <div class="profile-grid">
+        <div class="profile-text">
+          <h2>Selamat Datang di Klinik Sehat Sentosa</h2>
+          <p>Klinik pratama modern yang berdiri sejak tahun 2015, menyediakan layanan kesehatan berkualitas dengan dokter berpengalaman, peralatan medis terkini, dan pelayanan ramah 24 jam.</p>
+          <p>Kami melayani pasien umum, BPJS Kesehatan, asuransi swasta, perusahaan, dan karyawan. Didukung laboratorium, apotek 24 jam, USG, dan ruang tindakan minor.</p>
+          <p><strong>Visi:</strong> Menjadi klinik pilihan utama masyarakat dengan pelayanan cepat, akurat, dan terjangkau.</p>
+        </div>
+        <div class="profile-img">
+          <img src="https://images.unsplash.com/photo-1519494026892-80b4887f3ed5?ixlib=rb-4.0.3&auto=format&fit=crop&q=80" alt="Klinik Sehat Sentosa">
+        </div>
+      </div>
+    </section>
+
+    <!-- Fasilitas -->
+    <section style="background: var(--gray);">
+      <h2 class="section-title">Fasilitas Kami</h2>
+      <div class="facilities">
+        <div class="facility-card">
+          <i class="fas fa-user-md"></i>
+          <h3>Dokter Spesialis</h3>
+          <p>Umum, Gigi, Anak, Kandungan, dan Penyakit Dalam</p>
+        </div>
+        <div class="facility-card">
+          <i class="fas fa-prescription-bottle-alt"></i>
+          <h3>Apotek 24 Jam</h3>
+          <p>Obat lengkap & generik berkualitas</p>
+        </div>
+        <div class="facility-card">
+          <i class="fas fa-vial"></i>
+          <h3>Laboratorium</h3>
+          <p>Hematologi, kimia klinik, urin, dll</p>
+        </div>
+        <div class="facility-card">
+          <i class="fas fa-phone-volume"></i>
+          <h3>Pendaftaran Online</h3>
+          <p>Via website & WhatsApp resmi</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Flowchart Alur Pendaftaran -->
+    <section>
       <h2 class="section-title">Alur Pendaftaran Pasien Rawat Jalan</h2>
 
       <div class="flowchart-container">
-
-        <!-- SVG Flowchart -->
-        <svg class="flowchart-svg" viewBox="0 0 1000 900" xmlns="http://www.w3.org/2000/svg">
+        <svg class="flowchart-svg" viewBox="0 0 1000 950" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="28" refY="3" orient="auto" markerUnits="strokeWidth">
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="28" refY="3" orient="auto">
               <path d="M0,0 L0,6 L9,3 z" fill="#00bcd4"/>
             </marker>
           </defs>
 
-          <!-- Langkah 1 -->
-          <rect x="350" y="50" width="300" height="90" class="node"/>
-          <text x="500" y="95" class="node-text">1. Datang ke Klinik / Daftar Online</text>
-          <text x="500" y="115" font-size="14" text-anchor="middle">Via Website, WhatsApp, atau Langsung</text>
+          <rect x="350" y="50" width="300" height="100" rx="20" fill="#e0f7fa" stroke="#00bcd4" stroke-width="4"/>
+          <text x="500" y="95" class="node-text" font-size="18" font-weight="600" text-anchor="middle">1. Pilih Cara Daftar</text>
+          <text x="500" y="120" font-size="15" text-anchor="middle">Online (Website/WA) atau Datang Langsung</text>
 
-          <path d="M500,140 L500,180" class="arrow"/>
-          <text x="510" y="170" class="arrow-label">↓</text>
+          <path d="M500,150 L500,190" stroke="#00bcd4" stroke-width="5" marker-end="url(#arrow)"/>
+          <text x="515" y="180" fill="#ff5722" font-weight="bold">↓</text>
 
-          <!-- Langkah 2 -->
-          <rect x="350" y="200" width="300" height="90" class="node"/>
-          <text x="500" y="245" class="node-text">2. Loket Pendaftaran</text>
-          <text x="500" y="265" font-size="14" text-anchor="middle">• Pasien baru: isi formulir + KTP</text>
-          <text x="500" y="285" font-size="14" text-anchor="middle">• Pasien lama: sebutkan nama / tunjukkan kartu</text>
+          <rect x="350" y="210" width="300" height="100" rx="20" fill="#e0f7fa" stroke="#00bcd4" stroke-width="4"/>
+          <text x="500" y="255" class="node-text" font-size="18" font-weight="600" text-anchor="middle">2. Loket Pendaftaran</text>
+          <text x="500" y="280" font-size="14" text-anchor="middle">• Pasien baru: isi formulir + KTP</text>
+          <text x="500" y="300" font-size="14" text-anchor="middle">• Pasien lama: tunjukkan kartu / sebut nama</text>
 
-          <path d="M500,290 L500,330" class="arrow"/>
-          <text x="510" y="320" class="arrow-label">↓</text>
+          <path d="M500,310 L500,350" stroke="#00bcd4" stroke-width="5" marker-end="url(#arrow)"/>
+          <text x="515" y="340" fill="#ff5722" font-weight="bold">↓</text>
 
-          <!-- Langkah 3 -->
-          <rect x="350" y="350" width="300" height="90" class="node"/>
-          <text x="500" y="395" class="node-text">3. Terima Nomor Antrian</text>
-          <text x="500" y="415" font-size="14" text-anchor="middle">Cetak bukti pendaftaran + nomor antrian</text>
+          <rect x="350" y="370" width="300" height="90" rx="20" fill="#e0f7fa" stroke="#00bcd4" stroke-width="4"/>
+          <text x="500" y="415" class="node-text" font-size="18" font-weight="600" text-anchor="middle">3. Terima Nomor Antrian</text>
+          <text x="500" y="440" font-size="15" text-anchor="middle">Bukti pendaftaran + nomor antrian dicetak</text>
 
-          <path d="M500,440 L500,480" class="arrow"/>
-          <text x="510" y="470" class="arrow-label">↓</text>
+          <path d="M500,460 L500,500" stroke="#00bcd4" stroke-width="5" marker-end="url(#arrow)"/>
+          <text x="515" y="490" fill="#ff5722" font-weight="bold">↓</text>
 
-          <!-- Langkah 4 -->
-          <rect x="350" y="500" width="300" height="90" class="node"/>
-          <text x="500" y="545" class="node-text">4. Tunggu di Ruang Tunggu Poli</text>
-          <text x="500" y="565" font-size="14" text-anchor="middle">Pantau layar antrian atau dengar panggilan</text>
+          <rect x="350" y="520" width="300" height="90" rx="20" fill="#e0f7fa" stroke="#00bcd4" stroke-width="4"/>
+          <text x="500" y="565" class="node-text" font-size="18" font-weight="600" text-anchor="middle">4. Tunggu di Ruang Tunggu</text>
+          <text x="500" y="590" font-size="15" text-anchor="middle">Pantau layar atau dengarkan panggilan</text>
 
-          <path d="M500,590 L500,630" class="arrow"/>
-          <text x="510" y="620" class="arrow-label">↓</text>
+          <path d="M500,610 L500,650" stroke="#00bcd4" stroke-width="5" marker-end="url(#arrow)"/>
+          <text x="515" y="640" fill="#ff5722" font-weight="bold">↓</text>
 
-          <!-- Langkah 5 -->
-          <rect x="350" y="650" width="300" height="90" class="node"/>
-          <text x="500" y="695" class="node-text">5. Masuk ke Ruang Dokter</text>
-          <text x="500" y="715" font-size="14" text-anchor="middle">Dokter periksa → diagnosa → resep / tindakan</text>
+          <rect x="350" y="670" width="300" height="100" rx="20" fill="#e0f7fa" stroke="#00bcd4" stroke-width="4"/>
+          <text x="500" y="715" class="node-text" font-size="18" font-weight="600" text-anchor="middle">5. Periksa ke Dokter</text>
+          <text x="500" y="740" font-size="15" text-anchor="middle">Dokter memeriksa → resep / tindakan</text>
 
-          <path d="M500,740 L500,780" class="arrow"/>
-          <text x="510" y="770" class="arrow-label">↓</text>
+          <path d="M500,770 L500,810" stroke="#00bcd4" stroke-width="5" marker-end="url(#arrow)"/>
+          <text x="515" y="800" fill="#ff5722" font-weight="bold">↓</text>
 
-          <!-- Langkah 6 -->
-          <rect x="350" y="800" width="300" height="90" class="node"/>
-          <text x="500" y="845" class="node-text">6. Ambil Obat / Tindakan / Pulang</text>
-          <text x="500" y="865" font-size="14" text-anchor="middle">Apotek → Ruang Tindakan → Selesai</text>
+          <rect x="350" y="830" width="300" height="90" rx="20" fill="#e0f7fa" stroke="#00bcd4" stroke-width="4"/>
+          <text x="500" y="875" class="node-text" font-size="18" font-weight="600" text-anchor="middle">6. Ambil Obat / Tindakan / Pulang</text>
+          <text x="500" y="900" font-size="15" text-anchor="middle">Apotek → Ruang Tindakan → Selesai</text>
         </svg>
-
       </div>
+    </section>
 
-      <div class="btn-group">
-        <a href="pendaftaran-online.html" class="btn btn-primary">Daftar Online Sekarang</a>
-        <a href="https://wa.me/6281234567890" class="btn btn-outline" target="_blank">Daftar via WhatsApp</a>
-      </div>
-    </div>
-  </section>
+    <!-- Call to Action -->
+    <section class="cta">
+      <h2 style="font-size: 32px; margin-bottom: 20px;">Siap Berobat Tanpa Antri?</h2>
+      <p style="font-size: 18px; margin-bottom: 30px;">Daftar sekarang juga secara online!</p>
+      <a href="pendaftaran-online.html" class="btn btn-primary">Daftar Online Sekarang</a>
+      <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20daftar%20berobat" class="btn btn-outline" target="_blank">
+        <i class="fab fa-whatsapp"></i> Daftar via WhatsApp
+      </a>
+    </section>
+
+  </div>
 
   <footer>
     <div class="container">
-      <p><strong>Klinik Sehat Sentosa</strong><br>
-      Jl. Sehat Selalu No. 123, Jakarta Selatan<br>
-      Telp: (021) 1234-5678 | WA: 6281-2345-6789<br>
-      Buka Senin–Sabtu: 07:00–21:00 WIB | Minggu: 08:00–14:00 WIB</p>
-      <p>&copy; 2025 Klinik Sehat Sentosa. Semua hak dilindungi.</p>
+      <h3>Klinik Sehat Sentosa</h3>
+      <p>Jl. Sehat Bahagia No. 123, Jakarta Selatan<br>
+      Telp: (021) 5678-9000 | WA: <a href="https://wa.me/6281234567890">6281-2345-6789</a><br>
+      Email: info@kliniksehatsentosa.com</p>
+      <p>&copy; 2025 Klinik Sehat Sentosa. Semua hak cipta dilindungi.</p>
     </div>
   </footer>
 
