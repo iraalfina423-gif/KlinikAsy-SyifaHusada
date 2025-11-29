@@ -1,180 +1,377 @@
-Berikut adalah **kode HTML lengkap satu file** (copy-paste saja ke file `index.html`) untuk website profil klinik yang cantik, responsif, dan bertema kesehatan (warna hijau-biru tenang, icon medis, Google Maps embed, dll).
-
-```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Klinik Sehat Sentosa - Layanan Kesehatan Terpercaya</title>
-  <meta name="description" content="Klinik Sehat Sentosa menyediakan pelayanan rawat jalan, pemeriksaan umum, vaksinasi, dan laboratorium dengan dokter berpengalaman."/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Klinik Asy Syifa Husada - Takeran Magetan</title>
+    <style>
+        /* CSS Sederhana untuk Tema Kesehatan */
+        :root {
+            --color-primary: #007BFF; /* Biru terang untuk fokus */
+            --color-secondary: #28A745; /* Hijau untuk kesehatan */
+            --color-background: #F8F9FA; /* Abu-abu muda untuk latar belakang */
+            --color-text: #343A40; /* Teks gelap */
+            --color-white: #FFFFFF;
+        }
 
-  <!-- Google Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  
-  <style>
-    :root {
-      --primary: #2a9d8f;
-      --secondary: #264653;
-      --accent: #e9c46a;
-      --light: #f4f4f9;
-      --dark: #264653;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: 'Poppins', sans-serif; background:#f8fffe; color:#333; line-height:1.6; }
-    a { text-decoration:none; color:var(--primary); }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
 
-    header {
-      background: linear-gradient(rgba(42,157,143,0.9), rgba(38,70,83,0.9)), url('https://images.unsplash.com/photo-1551601651-bc60b3be2d28?q=80&w=2000');
-      background-size:cover; color:white; text-align:center; padding:100px 20px;
-    }
-    .logo img { width:120px; height:auto; border-radius:50%; border:5px solid white; margin-bottom:20px; }
-    h1 { font-size:2.8rem; margin-bottom:10px; }
-    h2 { font-size:2rem; color:var(--primary); margin:40px 0 20px; text-align:center; }
-    .container { max-width:1100px; margin:0 auto; padding:20px; }
+        .container {
+            width: 85%;
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 20px 0;
+        }
 
-    /* Section */
-    section { padding:60px 20px; background:white; margin-bottom:20px; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.05); }
+        /* Header dan Navigasi */
+        header {
+            background-color: var(--color-white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+        }
 
-    /* Alur Pendaftaran */
-    .steps { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:30px; margin-top:40px; }
-    .step { text-align:center; padding:30px; background:#f0f9f8; border-radius:15px; }
-    .step i { font-size:3rem; color:var(--primary); margin-bottom:20px; }
-    .step-num { background:var(--primary); color:white; width:50px; height:50px; line-height:50px; border-radius:50%; margin:0 auto 20px; font-size:1.5rem; }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    /* Fasilitas */
-    .fasilitas { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:25px; }
-    .fas { background:#e9f7f5; padding:25px; border-radius:12px; text-align:center; }
-    .fas i { font-size:2.5rem; color:var(--primary); margin-bottom:15px; }
+        .logo img {
+            height: 60px; /* Ukuran logo */
+            margin-right: 15px;
+        }
 
-    /* Kontak & Lokasi */
-    .contact-info { display:flex; flex-wrap:wrap; gap:40px; justify-content:center; align-items:flex-start; }
-    .contact-card { background:#f0f9f8; padding:30px; border-radius:12px; min-width:300px; }
-    .contact-card i { color:var(--primary); font-size:2rem; margin-bottom:15px; }
+        .logo-text {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--color-primary);
+        }
 
-    /* Maps */
-    .map-container { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:12px; margin-top:20px; }
-    .map-container iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
 
-    footer { background:var(--secondary); color:white; text-align:center; padding:30px; }
-    .btn-wa {
-      display:inline-block; background:#25d366; color:white; padding:12px 30px; border-radius:50px; font-weight:600; margin-top:20px;
-      box-shadow:0 5px 15px rgba(37,211,102,0.4);
-    }
-    @media (max-width:768px) {
-      h1 { font-size:2.2rem; }
-      .contact-info { flex-direction:column; align-items:center; }
-    }
-  </style>
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #159a22 100%); /* Kombinasi biru dan hijau */
+            color: var(--color-white);
+            padding: 60px 0;
+            text-align: center;
+            border-radius: 0 0 15px 15px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+        }
+
+        /* Bagian Konten */
+        section {
+            padding: 40px 0;
+            margin-bottom: 20px;
+            background-color: var(--color-white);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--color-secondary);
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--color-primary);
+            display: inline-block;
+            padding-bottom: 5px;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        /* Profil Klinik */
+        .profil p {
+            text-align: justify;
+            max-width: 800px;
+            margin: 0 auto 15px;
+            padding: 0 20px;
+        }
+
+        /* Alur Pendaftaran */
+        .flow-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #E9ECEF;
+            border-left: 5px solid var(--color-secondary);
+            border-radius: 4px;
+        }
+
+        .step-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-right: 15px;
+            background-color: #E6F0FF;
+            padding: 10px 15px;
+            border-radius: 50%;
+        }
+
+        .step-details h3 {
+            margin-top: 0;
+            color: var(--color-primary);
+        }
+
+        /* Fasilitas */
+        .facilities-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .facility-item {
+            flex-basis: 45%;
+            margin: 10px;
+            padding: 15px;
+            border: 1px solid #CCC;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .facility-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .facility-item h4 {
+            color: var(--color-secondary);
+            margin-top: 0;
+        }
+
+        /* Lokasi & Kontak */
+        .contact-info {
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .info-box {
+            flex-basis: 30%;
+            padding: 20px;
+            background-color: #E9F7EF; /* Warna sangat lembut */
+            border-radius: 8px;
+            margin: 10px;
+        }
+
+        .info-box h4 {
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+
+        .info-box a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .info-box a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: var(--color-text);
+            color: var(--color-white);
+            margin-top: 20px;
+        }
+
+    </style>
 </head>
 <body>
 
-  <!-- Header + Logo -->
-  <header>
-    <div class="container">
-      <!-- Ganti src logo dengan link gambar logo klinik kamu (bisa dari GitHub/raw) -->
-      <div class="logo">
-        <img src="https://via.placeholder.com/150/2a9d8f/white?text=LOGO" alt="Logo Klinik Sehat Sentosa"/>
-      </div>
-      <h1>Klinik Sehat Sentosa</h1>
-      <p>Pelayanan Kesehatan Profesional & Ramah untuk Keluarga Anda</p>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="path/to/your/logo.jpg" alt="Logo Klinik Asy Syifa Husada" style="border-radius: 50%; border: 3px solid var(--color-primary);">
+                    <span class="logo-text">Klinik Asy Syifa Husada</span>
+                </div>
+                <ul>
+                    <li><a href="#profil">Profil</a></li>
+                    <li><a href="#pendaftaran">Pendaftaran</a></li>
+                    <li><a href="#fasilitas">Fasilitas</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Layanan Kesehatan Terbaik di Takeran, Magetan</h1>
+            <p>Sehat adalah Investasi Terbaik. Kami siap melayani dengan hati dan profesionalisme.</p>
+        </div>
     </div>
-  </header>
 
-  <div class="container">
+    <main class="container">
+        
+        <section id="profil" class="profil">
+            <h2>🏥 Profil Klinik Asy Syifa Husada</h2>
+            <p>
+                Klinik Asy Syifa Husada adalah pusat layanan kesehatan yang berkomitmen untuk memberikan pelayanan medis dasar dan konsultasi kesehatan terbaik bagi masyarakat Takeran dan sekitarnya. Didukung oleh tenaga medis profesional dan peralatan yang memadai, kami bertekad menjadi mitra kesehatan terpercaya bagi keluarga Anda.
+            </p>
+            <p>
+                Kami mengutamakan pelayanan yang ramah, cepat, dan akurat, sejalan dengan visi kami untuk meningkatkan derajat kesehatan masyarakat.
+            </p>
+        </section>
 
-    <!-- Alur Pendaftaran Rawat Jalan -->
-    <section id="alur">
-      <h2>Alur Pendaftaran Rawat Jalan</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <i class="fas fa-user-plus"></i>
-          <h3>Daftar di Loket / Online</h3>
-          <p>Datang langsung ke loket pendaftaran atau daftar via WhatsApp 0812-3456-7890</p>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <i class="fas fa-file-alt"></i>
-          <h3>Isi Formulir & Tunggu Antrian</h3>
-          <p>Serahkan KTP/BPJS (jika ada) dan tunggu nomor antrian dipanggil</p>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <i class="fas fa-stethoscope"></i>
-          <h3>Periksa ke Dokter</h3>
-          <p>Konsultasi dengan dokter umum/spesialis sesuai keluhan</p>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <i class="fas fa-prescription-bottle-alt"></i>
-          <h3>Tebus Obat di Apotek</h3>
-          <p>Ambil resep obat di apotek klinik (gratis untuk pasien BPJS)</p>
-        </div>
-      </div>
-    </section>
+        <section id="pendaftaran" class="pendaftaran">
+            <h2>📝 Alur Pendaftaran Pasien Rawat Jalan</h2>
+            <div class="flow-step">
+                <div class="step-number">1</div>
+                <div class="step-details">
+                    <h3>Pendaftaran di Loket</h3>
+                    <p><strong>Keterangan:</strong> Pasien baru wajib mengisi formulir pendaftaran. Pasien lama cukup menyebutkan nama/nomor rekam medis. Serahkan kartu identitas (KTP/BPJS).</p>
+                </div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="step-number">2</div>
+                <div class="step-details">
+                    <h3>Verifikasi Administrasi</h3>
+                    <p><strong>Keterangan:</strong> Petugas akan memverifikasi data dan jaminan kesehatan (jika menggunakan BPJS/Asuransi) serta menentukan poli tujuan (Umum/Gigi).</p>
+                </div>
+            </div>
 
-    <!-- Fasilitas & Layanan Kami -->
-    <section id="fasilitas">
-      <h2>Fasilitas & Layanan Kami</h2>
-      <div class="fasilitas">
-        <div class="fas"><i class="fas fa-user-md"></i><h3>Dokter Umum & Spesialis</h3></div>
-        <div class="fas"><i class="fas fa-vial"></i><h3>Laboratorium</h3></div>
-        <div class="fas"><i class="fas fa-syringe"></i><h3>Imunisasi & Vaksinasi</h3></div>
-        <div class="fas"><i class="fas fa-pills"></i><h3>Apotek 24 Jam</h3></div>
-        <div class="fas"><i class="fas fa-x-ray"></i><h3>USG & Rontgen</h3></div>
-        <div class="fas"><i class="fas fa-ambulance"></i><h3>UGD 24 Jam</h3></div>
-      </div>
-    </section>
+            <div class="flow-step">
+                <div class="step-number">3</div>
+                <div class="step-details">
+                    <h3>Menunggu Panggilan Pemeriksaan</h3>
+                    <p><strong>Keterangan:</strong> Pasien dipersilakan menunggu di ruang tunggu. Nomor antrian akan dipanggil sesuai urutan untuk masuk ke ruang pemeriksaan dokter.</p>
+                </div>
+            </div>
 
-    <!-- Lokasi & Kontak -->
-    <section id="kontak">
-      <h2>Lokasi & Kontak Kami</h2>
-      <div class="contact-info">
-        <div class="contact-card">
-          <i class="fas fa-map-marker-alt"></i>
-          <h3>Alamat</h3>
-          <p>Jl. Sehat Selalu No. 123, Kel. Sentosa, Kec. Cibiru<br>Kota Bandung, Jawa Barat 40615</p>
-          
-          <div class="map-container">
-            <!-- Ganti pb=... dengan lokasi klinik kamu di Google Maps → Bagikan → Sematkan peta -->
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7987654321!2d107.715133614316!3d-6.916666995001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e9f7d3f7f7d9%3A0x9f8e9f8e9f8e9f8e!2sKlinik%20Sehat%20Sentosa!5e0!3m2!1sid!2sid!4v1699000000000" allowfullscreen="" loading="lazy"></iframe>
-          </div>
-        </div>
+            <div class="flow-step">
+                <div class="step-number">4</div>
+                <div class="step-details">
+                    <h3>Pemeriksaan Dokter</h3>
+                    <p><strong>Keterangan:</strong> Dokter akan melakukan anamnesa, pemeriksaan fisik, dan memberikan diagnosis. Dokter akan memberikan resep dan/atau rekomendasi tindakan lebih lanjut.</p>
+                </div>
+            </div>
 
-        <div class="contact-card">
-          <i class="fas fa-phone-alt"></i>
-          <h3>Telepon & WhatsApp</h3>
-          <p><strong>Telepon:</strong> (022) 1234-5678<br>
-             <strong>WhatsApp:</strong> 0812-3456-7890</p>
-          <a href="https://wa.me/6281234567890" target="_blank" class="btn-wa">
-            <i class="fab fa-whatsapp"></i> Hubungi via WhatsApp
-          </a><br><br>
+            <div class="flow-step">
+                <div class="step-number">5</div>
+                <div class="step-details">
+                    <h3>Pengambilan Obat & Pembayaran</h3>
+                    <p><strong>Keterangan:</strong> Resep dibawa ke apotek klinik. Pasien menyelesaikan administrasi pembayaran (untuk pasien umum) atau tanda tangan berkas (untuk pasien BPJS/Asuransi).</p>
+                </div>
+            </div>
+        </section>
 
-          <i class="fas fa-clock"></i>
-          <h3>Jam Operasional</h3>
-          <p>Senin–Sabtu: 07.00–21.00 WIB<br>Minggu & Libur Nasional: 08.00–17.00 WIB<br>UGD & Apotek 24 Jam</p>
-        </div>
-      </div>
-    </section>
+        <section id="fasilitas" class="fasilitas">
+            <h2>🩺 Fasilitas & Layanan Kami</h2>
+            <div class="facilities-grid">
+                <div class="facility-item">
+                    <h4>Poli Umum</h4>
+                    <p>Layanan pemeriksaan dan pengobatan penyakit umum, konsultasi kesehatan, dan skrining awal.</p>
+                </div>
+                <div class="facility-item">
+                    <h4>Poli Gigi</h4>
+                    <p>Layanan pemeriksaan, pengobatan, dan perawatan gigi dasar (pencabutan, penambalan, pembersihan karang gigi).</p>
+                </div>
+                <div class="facility-item">
+                    <h4>Layanan Laboratorium Sederhana</h4>
+                    <p>Pemeriksaan laboratorium sederhana untuk mendukung diagnosis (misalnya: cek gula darah, kolesterol, asam urat).</p>
+                </div>
+                <div class="facility-item">
+                    <h4>Apotek Klinik</h4>
+                    <p>Menyediakan obat-obatan yang terjamin keasliannya sesuai dengan resep dokter klinik.</p>
+                </div>
+                <div class="facility-item">
+                    <h4>Tindakan Medis Darurat</h4>
+                    <p>Penanganan awal untuk kasus kegawatdaruratan ringan sebelum dirujuk ke Rumah Sakit.</p>
+                </div>
+                <div class="facility-item">
+                    <h4>Home Care & Kunjungan Dokter</h4>
+                    <p>Layanan kunjungan dokter ke rumah untuk pasien yang tidak memungkinkan datang ke klinik.</p>
+                </div>
+            </div>
+        </section>
 
-  </div>
+        <section id="kontak" class="kontak">
+            <h2>📞 Lokasi & Kontak Kami</h2>
+            <div class="contact-info">
+                
+                <div class="info-box">
+                    <h4>Lokasi Klinik</h4>
+                    <p>Klinik Asy Syifa Husada</p>
+                    <p>Jl. Utama No. XX, Takeran, Magetan, Jawa Timur</p>
+                    <a href="https://maps.app.goo.gl/your-maps-link" target="_blank">Lihat di Google Maps</a>
+                </div>
 
-  <footer>
-    <p>© 2025 Klinik Sehat Sentosa. Semua hak dilindungi.</p>
-    <p>Website ini dibuat dengan ❤️ untuk kemudahan pasien</p>
-  </footer>
+                <div class="info-box">
+                    <h4>Kontak Telepon</h4>
+                    <p>Untuk pendaftaran, informasi layanan, atau janji temu.</p>
+                    <a href="tel:+6281234567890">0812-3456-7890 (Telepon/WA)</a>
+                    <p><em>Jam Operasional: Senin - Sabtu, 08.00 - 21.00 WIB</em></p>
+                </div>
+
+                <div class="info-box">
+                    <h4>Email & Media Sosial</h4>
+                    <p>Hubungi kami melalui surat elektronik.</p>
+                    <a href="mailto:info@kliniksysifa.com">info@kliniksysifa.com</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="lokasi-map">
+            <h2>📍 Peta Lokasi</h2>
+            <div style="text-align: center;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15835.91740925232!2d111.458925!3d-7.653457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMzknMTIuNCJTIDExMcAwNDc1OS45IkU!5e0!3m2!1sen!2sid!4v1678886400000" width="100%" height="450" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"></iframe>
+                <p style="margin-top: 10px;"><em>*Peta ini hanya contoh. Ganti dengan kode embed Google Maps lokasi klinik Anda.</em></p>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer>
+        &copy; 2025 Klinik Asy Syifa Husada. Semua Hak Dilindungi.
+    </footer>
 
 </body>
 </html>
-```
-
-### Cara Pakai:
-1. Ganti logo → upload logo klinik kamu ke GitHub/raw atau imgbb, lalu ganti link di `<img src="...">`
-2. Ganti Google Maps → buka Google Maps lokasi klinik → Bagikan → Sematkan peta → salin kode iframe, ganti yang ada di bagian map.
-3. Ganti nomor telepon, alamat, jam buka, dll sesuai klinik kamu.
-
-Simpan sebagai `index.html`, upload ke GitHub Pages → langsung jadi website profesional!
-
-Kalau kamu mau versi dengan foto dokter, galeri, atau form pendaftaran online, bilang saja ya, saya tambahkan gratis!
