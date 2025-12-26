@@ -90,3 +90,98 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pendaftaran Pasien Rawat Jalan</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; }
+        .logout { text-align: right; margin-bottom: 20px; }
+        .logout a { color: #007bff; text-decoration: none; }
+        form { display: grid; gap: 15px; }
+        label { font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .section { border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 20px; }
+        button { background-color: #28a745; color: white; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logout">
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+        <h2>Formulir Pendaftaran Pasien Rawat Jalan</h2>
+        <form action="#" method="post">
+            <!-- Isi form sama seperti sebelumnya -->
+            <div class="section">
+                <h3>Identitas Pasien</h3>
+                <label>Nama Lengkap:</label>
+                <input type="text" name="nama" required>
+
+                <label>Tempat Lahir:</label>
+                <input type="text" name="tempat_lahir" required>
+
+                <label>Tanggal Lahir:</label>
+                <input type="date" name="tanggal_lahir" required>
+
+                <label>Jenis Kelamin:</label>
+                <select name="jenis_kelamin" required>
+                    <option value="">Pilih</option>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                </select>
+
+                <label>Alamat Lengkap:</label>
+                <textarea name="alamat" rows="3" required></textarea>
+
+                <label>No. Telepon/HP:</label>
+                <input type="tel" name="no_telepon" required>
+            </div>
+
+            <div class="section">
+                <h3>Informasi Kunjungan</h3>
+                <label>Poliklinik Tujuan:</label>
+                <select name="poliklinik" required>
+                    <option value="">Pilih Poliklinik</option>
+                    <option value="Umum">Umum</option>
+                    <option value="Gigi">Gigi</option>
+                    <option value="Anak">Anak</option>
+                    <option value="Kandungan">Kandungan</option>
+                    <option value="Mata">Mata</option>
+                </select>
+
+                <label>Cara Pembayaran:</label>
+                <select name="cara_bayar" required>
+                    <option value="">Pilih</option>
+                    <option value="Umum">Umum / Pribadi</option>
+                    <option value="BPJS">BPJS Kesehatan</option>
+                    <option value="Asuransi">Asuransi Lainnya</option>
+                </select>
+
+                <label>Nomor BPJS / Asuransi (jika ada):</label>
+                <input type="text" name="no_bpjs">
+            </div>
+
+            <button type="submit">Simpan Pendaftaran</button>
+        </form>
+    </div>
+
+    <script>
+        // Cek apakah sudah login
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+
+        // Fungsi logout
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
