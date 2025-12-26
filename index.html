@@ -3,49 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulir Pendaftaran Pasien Rawat Jalan</title>
+    <title>Login - Pendaftaran Pasien Rawat Jalan</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 20px;
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
+        .login-container {
             background: white;
-            padding: 30px;
+            padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            width: 350px;
+            text-align: center;
         }
         h2 {
-            text-align: center;
+            margin-bottom: 30px;
             color: #333;
         }
-        form {
-            display: grid;
-            gap: 15px;
-        }
-        label {
-            font-weight: bold;
-        }
-        input[type="text"], input[type="date"], input[type="tel"], input[type="email"], select, textarea {
+        input {
             width: 100%;
-            padding: 8px;
+            padding: 12px;
+            margin: 10px 0;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 5px;
             box-sizing: border-box;
         }
-        .section {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-        }
         button {
+            width: 100%;
+            padding: 12px;
             background-color: #007bff;
             color: white;
-            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -54,109 +47,46 @@
         button:hover {
             background-color: #0056b3;
         }
+        .error {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Formulir Pendaftaran Pasien Rawat Jalan</h2>
-        <form action="#" method="post"> <!-- Ganti action dengan URL proses form jika ada backend -->
-            
-            <div class="section">
-                <h3>Identitas Pasien</h3>
-                
-                <label for="nama">Nama Lengkap:</label>
-                <input type="text" id="nama" name="nama" required>
-                
-                <label for="tempat_lahir">Tempat Lahir:</label>
-                <input type="text" id="tempat_lahir" name="tempat_lahir" required>
-                
-                <label for="tanggal_lahir">Tanggal Lahir:</label>
-                <input type="date" id="tanggal_lahir" name="tanggal_lahir" required>
-                
-                <label for="jenis_kelamin">Jenis Kelamin:</label>
-                <select id="jenis_kelamin" name="jenis_kelamin" required>
-                    <option value="">Pilih</option>
-                    <option value="Laki-laki">Laki-laki</option>
-                    <option value="Perempuan">Perempuan</option>
-                </select>
-                
-                <label for="agama">Agama:</label>
-                <select id="agama" name="agama">
-                    <option value="">Pilih</option>
-                    <option value="Islam">Islam</option>
-                    <option value="Kristen">Kristen</option>
-                    <option value="Katolik">Katolik</option>
-                    <option value="Hindu">Hindu</option>
-                    <option value="Budha">Budha</option>
-                    <option value="Konghucu">Konghucu</option>
-                    <option value="Lainnya">Lainnya</option>
-                </select>
-                
-                <label for="status_perkawinan">Status Perkawinan:</label>
-                <select id="status_perkawinan" name="status_perkawinan">
-                    <option value="">Pilih</option>
-                    <option value="Belum Kawin">Belum Kawin</option>
-                    <option value="Kawin">Kawin</option>
-                    <option value="Cerai">Cerai</option>
-                </select>
-                
-                <label for="pekerjaan">Pekerjaan:</label>
-                <input type="text" id="pekerjaan" name="pekerjaan">
-                
-                <label for="alamat">Alamat Lengkap:</label>
-                <textarea id="alamat" name="alamat" rows="3" required></textarea>
-                
-                <label for="no_telepon">No. Telepon/HP:</label>
-                <input type="tel" id="no_telepon" name="no_telepon" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
-            </div>
-            
-            <div class="section">
-                <h3>Informasi Kunjungan</h3>
-                
-                <label for="poliklinik">Poliklinik Tujuan:</label>
-                <select id="poliklinik" name="poliklinik" required>
-                    <option value="">Pilih Poliklinik</option>
-                    <option value="Umum">Umum</option>
-                    <option value="Gigi">Gigi</option>
-                    <option value="Anak">Anak</option>
-                    <option value="Kandungan">Kandungan</option>
-                    <option value="Bedah">Bedah</option>
-                    <option value="Mata">Mata</option>
-                    <option value="THT">THT</option>
-                    <option value="Lainnya">Lainnya</option>
-                </select>
-                
-                <label for="cara_bayar">Cara Pembayaran:</label>
-                <select id="cara_bayar" name="cara_bayar" required>
-                    <option value="">Pilih</option>
-                    <option value="Umum">Umum / Pribadi</option>
-                    <option value="BPJS">BPJS Kesehatan</option>
-                    <option value="Asuransi Lain">Asuransi Lainnya</option>
-                    <option value="Perusahaan">Perusahaan</option>
-                </select>
-                
-                <label for="no_bpjs">Nomor BPJS / Asuransi (jika ada):</label>
-                <input type="text" id="no_bpjs" name="no_bpjs">
-            </div>
-            
-            <div class="section">
-                <h3>Kontak Darurat / Penanggung Jawab</h3>
-                
-                <label for="nama_penanggung">Nama Penanggung Jawab:</label>
-                <input type="text" id="nama_penanggung" name="nama_penanggung">
-                
-                <label for="hubungan">Hubungan dengan Pasien:</label>
-                <input type="text" id="hubungan" name="hubungan">
-                
-                <label for="telepon_penanggung">No. Telepon:</label>
-                <input type="tel" id="telepon_penanggung" name="telepon_penanggung">
-            </div>
-            
-            <button type="submit">Daftar</button>
+    <div class="login-container">
+        <h2>Login Sistem Pendaftaran</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <p class="error" id="errorMsg">Username atau password salah!</p>
+            <p style="margin-top: 20px; color: #666;">
+                Demo: <br>
+                Username: <strong>admin</strong><br>
+                Password: <strong>1234</strong>
+            </p>
         </form>
     </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('errorMsg');
+            
+            // Login sederhana (ganti dengan validasi server di produksi)
+            if (username === 'admin' && password === '1234') {
+                // Simpan status login di localStorage
+                localStorage.setItem('isLoggedIn', 'true');
+                window.location.href = 'pendaftaran.html';
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>
