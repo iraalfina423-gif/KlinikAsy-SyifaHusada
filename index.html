@@ -185,8 +185,8 @@ Medis Ringan</p>
       <div class="flowchart">
         <div class="mermaid">
           flowchart TD
-              Start[Pasien Datang ke Klinik] --> Cek{BPJS/Umum?}
-              Cek -->|Ya| BPJS[Loket BPJS - Verifikasi Kartu]
+              Start[Pasien Datang ke Klinik] --> Cek{Lama/Baru?}
+              Cek -->|Ya| Lama[Loket BPJS - Verifikasi Kartu]
               Cek -->|Tidak| Umum[Loket Umum - Isi Form & Bayar]
               
               BPJS --> Antri[Dapat Nomor Antrian]
