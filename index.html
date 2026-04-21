@@ -183,214 +183,59 @@ Medis Ringan</p>
     <section id="alur" class="my-5">
       <h2 class="text-center mb-5 text-primary fw-bold">Alur Pendaftaran Pasien Rawat Jalan</h2>
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flowchart Pendaftaran Klinik Detail</title>
-    <style>
-        :root {
-            --primary-blue: #007bff;
-            --bpjs-orange: #ffc107;
-            --umum-orange: #fd7e14;
-            --success-green: #28a745;
-            --line-color: #333;
-            --bg-light: #f4f7f6;
-            --node-bg: #f8f0ff;
-            --node-border: #d1c4e9;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: white;
-            margin: 0;
-            padding: 40px 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        .flow-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 1100px;
-        }
-
-        /* Box Standar */
-        .node {
-            padding: 15px 20px;
-            border: 1.5px solid var(--node-border);
-            background-color: var(--node-bg);
-            border-radius: 4px;
-            min-width: 250px;
-            text-align: center;
-            font-size: 14px;
-            color: #333;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: relative;
-        }
-
-        /* Terminal (Mulai/Selesai) */
-        .terminal {
-            background-color: var(--primary-blue);
-            color: white;
-            font-weight: bold;
-            border: none;
-            text-transform: uppercase;
-        }
-
-        /* Decision (Diamond) */
-        .decision {
-            width: 130px;
-            height: 130px;
-            background-color: var(--node-bg);
-            border: 1.5px solid var(--node-border);
-            transform: rotate(45deg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 30px 0;
-        }
-
-        .decision span {
-            transform: rotate(-45deg);
-            font-weight: bold;
-            font-size: 13px;
-            text-align: center;
-        }
-
-        /* Percabangan Row */
-        .row {
-            display: flex;
-            justify-content: center;
-            gap: 80px;
-            width: 100%;
-            margin: 10px 0;
-        }
-
-        .branch {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Garis Panah */
-        .arrow {
-            width: 2px;
-            height: 40px;
-            background-color: var(--line-color);
-            position: relative;
-        }
-
-        .arrow::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: -4px;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-top: 8px solid var(--line-color);
-        }
-
-        /* Label Ya/Tidak */
-        .label {
-            font-size: 12px;
-            font-weight: bold;
-            color: #555;
-            margin-bottom: 5px;
-        }
-
-        /* Warna Khusus Loket */
-        .loket-bpjs { background-color: var(--bpjs-orange); border: none; font-weight: bold; }
-        .loket-umum { background-color: var(--umum-orange); border: none; color: white; font-weight: bold; }
-        .selesai { background-color: var(--success-green); color: white; border: none; font-weight: bold; }
-
-    </style>
-</head>
-<body>
-
-<div class="flow-container">
-    
-    <div class="node terminal">Pasien Datang ke Klinik</div>
-    <div class="arrow"></div>
-
-    <div class="decision"><span>Pasien Baru?</span></div>
-    
-    <div class="row">
-        <div class="branch">
-            <span class="label">Ya</span>
-            <div class="node">Loket Baru: Isi Form & Input Data</div>
-        </div>
-        <div class="branch">
-            <span class="label">Tidak</span>
-            <div class="node">Loket Lama: Verifikasi Kartu Berobat</div>
-        </div>
+  <section>
+  <div class="flowchart">
+    <div class="mermaid">
+      flowchart TD
+          %% Node Utama
+          Start[Pasien Datang ke Klinik] --> CekStatus{Pasien Baru?}
+          
+          %% Cabang Pasien Baru vs Lama
+          CekStatus -->|Ya| RegBaru[Loket Pendaftaran - Isi Formulir & Input Data]
+          CekStatus -->|Tidak| RegLama[Loket Pendaftaran - Verifikasi ID / Kartu Berobat]
+          
+          RegBaru --> CekBayar{BPJS / Umum?}
+          RegLama --> CekBayar
+          
+          %% Cabang Pembayaran
+          CekBayar -->|BPJS| BPJS[Verifikasi Kartu BPJS & Rujukan]
+          CekBayar -->|Umum| Umum[Pembayaran Administrasi Kasir]
+          
+          BPJS --> Antri[Dapat Nomor Antrean]
+          Umum --> Antri
+          
+          %% Alur Pelayanan Poli
+          Antri --> Tunggu[Menunggu di Ruang Tunggu]
+          Tunggu --> Poli[Dipanggil ke Poli Tujuan]
+          Poli --> Dokter[Periksa Dokter]
+          
+          %% Keputusan Kontrol
+          Dokter --> CekKontrol{Perlu Kontrol?}
+          CekKontrol -->|Ya| Jadwal[Penjadwalan Kontrol Kembali]
+          CekKontrol -->|Tidak| ResepCheck
+          
+          Jadwal --> ResepCheck{Ada Resep / Tindakan?}
+          
+          %% Akhir Proses
+          ResepCheck -->|Ya| Apotek[Ke Apotek / Kasir Akhir]
+          ResepCheck -->|Tidak| Selesai[Selesai & Pulang]
+          Apotek --> Selesai
+          
+          %% Styling sesuai permintaan
+          style Start fill:#1e293b,stroke:#fff,color:#fff
+          style Selesai fill:#28a745,stroke:#fff,color:#fff
+          style BPJS fill:#ffc107,stroke:#333,color:#000
+          style Umum fill:#fd7e14,stroke:#fff,color:#fff
+          style CekStatus fill:#f0f4ff,stroke:#3b82f6
+          style CekBayar fill:#f0f4ff,stroke:#3b82f6
+          style CekKontrol fill:#f0f4ff,stroke:#3b82f6
+          style ResepCheck fill:#f0f4ff,stroke:#3b82f6
     </div>
+  </div>
+</section>
 
-    <div class="arrow" style="height: 60px;"></div>
-
-    <div class="decision"><span>BPJS / Umum?</span></div>
-
-    <div class="row">
-        <div class="branch">
-            <span class="label">BPJS</span>
-            <div class="node loket-bpjs">Loket BPJS: Verifikasi Kartu & Rujukan</div>
-        </div>
-        <div class="branch">
-            <span class="label">Umum</span>
-            <div class="node loket-umum">Loket Umum: Bayar Administrasi</div>
-        </div>
-    </div>
-
-    <div class="arrow" style="height: 60px;"></div>
-
-    <div class="node">Dapat Nomor Antrean</div>
-    <div class="arrow"></div>
-    <div class="node">Menunggu di Ruang Tunggu</div>
-    <div class="arrow"></div>
-    <div class="node">Dipanggil ke Poli Tujuan</div>
-    <div class="arrow"></div>
-    <div class="node" style="background-color: #e8f5e9; border-color: #a5d6a7;">Periksa Dokter</div>
-    <div class="arrow"></div>
-
-    <div class="decision"><span>Perlu Kontrol?</span></div>
-
-    <div class="row">
-        <div class="branch">
-            <span class="label">Ya</span>
-            <div class="node">Penjadwalan Kontrol Kembali</div>
-        </div>
-        <div class="branch">
-            <span class="label">Tidak</span>
-            <div class="node">Edukasi Selesai Berobat</div>
-        </div>
-    </div>
-
-    <div class="arrow" style="height: 60px;"></div>
-
-    <div class="decision" style="width: 110px; height: 110px;"><span>Ada Resep / Tindakan?</span></div>
-
-    <div class="row">
-        <div class="branch">
-            <span class="label">Ya</span>
-            <div class="node">Ke Apotek / Kasir Akhir</div>
-        </div>
-        <div class="branch">
-            <span class="label">Tidak</span>
-            <div class="node">Langsung ke Kepulangan</div>
-        </div>
-    </div>
-
-    <div class="arrow" style="height: 60px;"></div>
-
-    <div class="node selesai">Selesai & Pulang</div>
-
-</div>
-
-</body>
-</html>
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
     
     <!-- Lokasi & Kontak -->
     <section id="lokasi" class="my-5 bg-light p-5 rounded shadow">
