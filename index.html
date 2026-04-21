@@ -191,15 +191,15 @@ Medis Ringan</p>
           Start[Pasien Datang ke Klinik] --> CekStatus{Pasien Baru?}
           
           %% Cabang Pasien Baru vs Lama
-          CekStatus -->|Ya| RegBaru[Loket Pendaftaran - Isi Formulir & Input Data]
-          CekStatus -->|Tidak| RegLama[Loket Pendaftaran - Verifikasi ID / Kartu Berobat]
+          CekStatus -->|Ya| RegBaru[Loket Pendaftaran - Menunjukkan Kartu Identitas (KTP, KK, SIM) untuk registrasi]
+          CekStatus -->|Tidak| RegLama[Loket Pendaftaran - Menunjukkan Kartu Berobat atau Kartu Identitas]
           
           RegBaru --> CekBayar{BPJS / Umum?}
           RegLama --> CekBayar
           
           %% Cabang Pembayaran
-          CekBayar -->|BPJS| BPJS[Verifikasi Kartu BPJS & Rujukan]
-          CekBayar -->|Umum| Umum[Pembayaran Administrasi Kasir]
+          CekBayar -->|BPJS| BPJS[Cek Kepesertaan BPJS dan status aktif/non-aktif]
+          CekBayar -->|Umum| Umum[Melakukan Pembayaran biaya pendaftaran (administrasi)]
           
           BPJS --> Antri[Dapat Nomor Antrean]
           Umum --> Antri
