@@ -183,7 +183,7 @@ Medis Ringan</p>
     <section id="alur" class="my-5">
       <h2 class="text-center mb-5 text-primary fw-bold">Alur Pendaftaran Pasien Rawat Jalan</h2>
 
-  <section>
+<section>
   <div class="flowchart">
     <div class="mermaid">
       flowchart TD
@@ -191,15 +191,15 @@ Medis Ringan</p>
           Start[Pasien Datang ke Klinik] --> CekStatus{Pasien Baru?}
           
           %% Cabang Pasien Baru vs Lama
-          CekStatus -->|Ya| RegBaru[Loket Pendaftaran - Menunjukkan Kartu Identitas (KTP, KK, SIM) untuk registrasi]
-          CekStatus -->|Tidak| RegLama[Loket Pendaftaran - Menunjukkan Kartu Berobat atau Kartu Identitas]
+          CekStatus -->|Ya| RegBaru[Loket Pendaftaran - Isi Formulir & Input Data]
+          CekStatus -->|Tidak| RegLama[Loket Pendaftaran - Verifikasi ID / Kartu Berobat]
           
           RegBaru --> CekBayar{BPJS / Umum?}
           RegLama --> CekBayar
           
           %% Cabang Pembayaran
-          CekBayar -->|BPJS| BPJS[Cek Kepesertaan BPJS dan status aktif/non-aktif]
-          CekBayar -->|Umum| Umum[Melakukan Pembayaran biaya pendaftaran (administrasi)]
+          CekBayar -->|BPJS| BPJS[Verifikasi Kartu BPJS & Rujukan]
+          CekBayar -->|Umum| Umum[Pembayaran Administrasi Kasir]
           
           BPJS --> Antri[Dapat Nomor Antrean]
           Umum --> Antri
@@ -233,6 +233,9 @@ Medis Ringan</p>
     </div>
   </div>
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
 
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <script>mermaid.initialize({startOnLoad:true});</script>
