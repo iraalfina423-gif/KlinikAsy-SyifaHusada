@@ -185,9 +185,9 @@ Medis Ringan</p>
       <div class="flowchart">
         <div class="mermaid">
           flowchart TD
-              Start[Pasien Datang ke Klinik] --> Cek{BPJS/Umum?}
-              Cek -->|Ya| BPJS[Loket BPJS - Verifikasi Kartu]
-              Cek -->|Tidak| Umum[Loket Umum - Isi Form & Bayar]
+              Start[Pasien Datang ke Klinik] --> Cek{Pasien Baru?}
+              Cek -->|Ya| Baru[Loket Pendaftaran - Menunjukkan kartu identitas (KTP, SIM, KK) untuk registrasi]
+              Cek -->|Tidak| Lama[Loket Pendaftaran - Menunjukkan kartu identitas/KIB untuk pengecekan data rekam medis pasien]
               
               BPJS --> Antri[Dapat Nomor Antrian]
               Umum --> Antri
