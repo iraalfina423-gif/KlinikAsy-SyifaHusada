@@ -183,9 +183,187 @@ Medis Ringan</p>
     <section id="alur" class="my-5">
       <h2 class="text-center mb-5 text-primary fw-bold">Alur Pendaftaran Pasien Rawat Jalan</h2>
 
-<div style="text-align: center; padding: 20px;">
-    <img src="https://i.ibb.co.com/Q3pWxyrm/Whats-App-Image-2026-04-21-at-23-10-14.jpg" alt="Flowchart Pendaftaran Klinik" style="width: 100%; max-width: 1000px; height: auto; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowchart Pendaftaran Klinik Terpadu - Full Screen</title>
+    <style>
+        :root {
+            --line: #94a3b8;
+            --start: #1e293b;
+            --status: #3b82f6; 
+            --payment: #f59e0b; 
+            --medis: #10b981; 
+        }
+
+        /* Setel tinggi penuh dan hilangkan margin default */
+        html, body { 
+            height: 100%; 
+            margin: 0; 
+            padding: 0; 
+            background: #f8fafc; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Wrapper utama menggunakan min-height agar bisa discroll jika konten melebihi layar */
+        .flow-wrapper { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 15px; 
+            padding: 40px 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        /* Node Styles - Diperbesar untuk Full Screen */
+        .node {
+            padding: 20px 30px; 
+            border: 2px solid #334155; 
+            background: white;
+            border-radius: 10px; 
+            width: 350px; /* Ukuran kotak diperlebar */
+            text-align: center; 
+            font-size: 16px; /* Font diperbesar */
+            font-weight: 500;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .start { 
+            background: var(--start); 
+            color: white; 
+            border-radius: 50px; 
+            font-weight: bold; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Decision (Diamond) - Diperbesar */
+        .decision {
+            width: 140px; 
+            height: 140px; 
+            background: #fff; 
+            border: 2px solid #334155;
+            transform: rotate(45deg); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin: 30px 0;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .decision span { 
+            transform: rotate(-45deg); 
+            font-weight: bold; 
+            font-size: 14px; 
+            text-align: center; 
+            color: #1e293b;
+        }
+
+        /* Container untuk percabangan - Jarak diperlebar */
+        .row { 
+            display: flex; 
+            gap: 100px; /* Jarak antar cabang diperjauh */
+            position: relative; 
+            margin-top: 10px; 
+        }
+
+        .col { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 15px; 
+        }
+
+        /* Garis Penghubung - Diperpanjang */
+        .arrow-v { 
+            width: 3px; 
+            height: 50px; 
+            background: var(--line); 
+            position: relative; 
+        }
+
+        .arrow-v::after { 
+            content: '▼'; 
+            position: absolute; 
+            bottom: -12px; 
+            left: -7px; 
+            color: var(--line); 
+            font-size: 16px; 
+        }
+
+        .label { 
+            font-size: 13px; 
+            font-weight: 800; 
+            color: #ef4444; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="flow-wrapper">
+    <div class="node start">PASIEN DATANG</div>
+    <div class="arrow-v"></div>
+
+    <div class="decision"><span>Status<br>Pasien?</span></div>
+    <div class="row">
+        <div class="col">
+            <div class="label">Pasien Baru</div>
+            <div class="node" style="border-top: 8px solid var(--status)">Menunjukkan Kartu Identitas (KTP, KK, SIM) untuk registrasi</div>
+        </div>
+        <div class="col">
+            <div class="label">Pasien Lama</div>
+            <div class="node" style="border-top: 8px solid var(--status)">Menunjukkan Kartu Berobat atau Kartu Identitas</div>
+        </div>
+    </div>
+
+    <div class="arrow-v"></div>
+
+    <div class="decision"><span>Jenis<br>Bayar?</span></div>
+    <div class="row">
+        <div class="col">
+            <div class="label">BPJS</div>
+            <div class="node" style="border-top: 8px solid var(--payment)">Cek Kepesertaan BPJS dan status aktif/non-aktif</div>
+        </div>
+        <div class="col">
+            <div class="label">UMUM</div>
+            <div class="node" style="border-top: 8px solid var(--payment)">Melakukan Pembayaran biaya pendaftaran (administrasi)</div>
+        </div>
+    </div>
+
+    <div class="arrow-v"></div>
+    <div class="node">Pemilihan Poli Tujuan</div>
+    
+    <div class="arrow-v"></div>
+    <div class="node" style="background: #ecfdf5; border-color: #10b981;">Pemeriksaan Dokter di Poli</div>
+    <div class="arrow-v"></div>
+
+    <div class="decision"><span>Perlu<br>Kontrol?</span></div>
+    <div class="row">
+        <div class="col">
+            <div class="label">Ya</div>
+            <div class="node" style="border-top: 8px solid var(--medis)">Penjadwalan Kontrol</div>
+        </div>
+        <div class="col">
+            <div class="label">Tidak</div>
+            <div class="node" style="border-top: 8px solid var(--medis)">Edukasi Selesai Berobat</div>
+        </div>
+    </div>
+
+    <div class="arrow-v"></div>
+    <div class="node">Farmasi (Ambil Obat) & Kasir Akhir<br><small>(Khusus Pasien Umum)</small></div>
+    <div class="arrow-v"></div>
+
+    <div class="node start" style="background: #059669; border: none;">PASIEN PULANG</div>
 </div>
+
+</body>
+</html>
 
     <!-- Lokasi & Kontak -->
     <section id="lokasi" class="my-5 bg-light p-5 rounded shadow">
