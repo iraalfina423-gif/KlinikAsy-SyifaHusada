@@ -187,52 +187,62 @@ Medis Ringan</p>
   <div class="flowchart">
     <div class="mermaid">
       flowchart TD
-          %% Node Utama
-          Start[Pasien Datang ke Klinik] --> CekStatus{Pasien Baru?}
+          %% Node Awal
+          Start[Pasien Datang ke Klinik] --> CekStatus{Pasien Baru/Lama?}
           
-          %% Cabang Pasien Baru vs Lama
-          CekStatus -->|Ya| RegBaru[Loket Pendaftaran - Isi Formulir & Input Data]
-          CekStatus -->|Tidak| RegLama[Loket Pendaftaran - Verifikasi ID / Kartu Berobat]
+          %% Percabangan Status Pasien
+          CekStatus -->|Baru| Baru[Menunjukkan Kartu Identitas KTP/KK/SIM untuk registrasi]
+          CekStatus -->|Lama| Lama[Menunjukkan Kartu Berobat atau Kartu Identitas]
           
-          RegBaru --> CekBayar{BPJS / Umum?}
-          RegLama --> CekBayar
+          Baru --> CekBayar{BPJS/Umum?}
+          Lama --> CekBayar
           
-          %% Cabang Pembayaran
-          CekBayar -->|BPJS| BPJS[Verifikasi Kartu BPJS & Rujukan]
-          CekBayar -->|Umum| Umum[Pembayaran Administrasi Kasir]
+          %% Percabangan Jenis Pembayaran
+          CekBayar -->|BPJS| BPJS[Cek Kepesertaan BPJS dan status aktif/non-aktif]
+          CekBayar -->|Umum| Umum[Melakukan Pembayaran biaya pendaftaran administrasi]
           
-          BPJS --> Antri[Dapat Nomor Antrean]
+          BPJS --> Antri[Pemilihan Poli Tujuan & Dapat Nomor Antrean]
           Umum --> Antri
           
           %% Alur Pelayanan Poli
           Antri --> Tunggu[Menunggu di Ruang Tunggu]
-          Tunggu --> Poli[Dipanggil ke Poli Tujuan]
-          Poli --> Dokter[Periksa Dokter]
+          Tunggu --> Poli[Dipanggil ke Poli yang Dituju]
+          Poli --> Dokter[Pemeriksaan Dokter di Poli]
           
-          %% Keputusan Kontrol
+          %% Percabangan Kontrol
           Dokter --> CekKontrol{Perlu Kontrol?}
-          CekKontrol -->|Ya| Jadwal[Penjadwalan Kontrol Kembali]
-          CekKontrol -->|Tidak| ResepCheck
+          CekKontrol -->|Ya| Kontrol[Penjadwalan Kontrol Kembali]
+          CekKontrol -->|Tidak| SelesaiBerobat[Edukasi Selesai Berobat]
           
-          Jadwal --> ResepCheck{Ada Resep / Tindakan?}
+          Kontrol --> ResepCheck{Ada Resep/Tindakan?}
+          SelesaiBerobat --> ResepCheck
           
-          %% Akhir Proses
-          ResepCheck -->|Ya| Apotek[Ke Apotek / Kasir Akhir]
-          ResepCheck -->|Tidak| Selesai[Selesai & Pulang]
-          Apotek --> Selesai
+          %% Alur Farmasi dan Kasir
+          ResepCheck -->|Ya| Farmasi[Farmasi: Pengambilan Obat]
+          ResepCheck -->|Tidak| FinalCheck{Pasien Umum?}
           
-          %% Styling sesuai permintaan
+          Farmasi --> FinalCheck
+          
+          FinalCheck -->|Ya| Kasir[Kasir: Pelunasan Biaya Tindakan & Obat]
+          FinalCheck -->|Tidak| Selesai[Pasien Pulang]
+          
+          Kasir --> Selesai
+
+          %% Styling Visual
           style Start fill:#1e293b,stroke:#fff,color:#fff
           style Selesai fill:#28a745,stroke:#fff,color:#fff
           style BPJS fill:#ffc107,stroke:#333,color:#000
           style Umum fill:#fd7e14,stroke:#fff,color:#fff
-          style CekStatus fill:#f0f4ff,stroke:#3b82f6
-          style CekBayar fill:#f0f4ff,stroke:#3b82f6
-          style CekKontrol fill:#f0f4ff,stroke:#3b82f6
-          style ResepCheck fill:#f0f4ff,stroke:#3b82f6
+          style Kasir fill:#e74c3c,stroke:#fff,color:#fff
+          style Baru fill:#f0f4ff,stroke:#3b82f6
+          style Lama fill:#f0f4ff,stroke:#3b82f6
+          style Kontrol fill:#d1fae5,stroke:#059669
     </div>
   </div>
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true, theme:'default'});</script>
 
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <script>mermaid.initialize({startOnLoad:true});</script>
